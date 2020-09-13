@@ -1,0 +1,13 @@
+/* pages/advice/advice.wxss */
+.weui-input{
+  width: 90%;
+  height: 360rpx;
+  margin: 20rpx;
+  border: 1px solid black;
+  border-radius: 4rpx;
+  padding: 16rpx;
+}
+.button{
+  margin-top: 40rpx;
+  width: 90%;
+}

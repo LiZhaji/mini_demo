@@ -1,0 +1,4 @@
+<!--pages/advice/advice.wxml-->
+<textarea class="weui-input" bindinput="bindinput" placeholder="请输入您的建议"></textarea>
+<button class="button" bindtap="backup">返回</button>
+<button class="button" type="primary" bindtap="submit">提交</button>
