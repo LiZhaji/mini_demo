@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.13.0"
+    "koa": "^2.13.0",
+    "koa-router": "^9.4.0",
+    "node-fetch": "^2.6.1",
+    "sequelize": "^6.3.5"
   }
 }
