@@ -1,4 +1,5 @@
 // pages/advice/advice.js
+const app = getApp()
 Page({
 
   /**
@@ -19,13 +20,33 @@ Page({
     })
   },
   submit(){
-    console.log(this.data.advice,999);
-    this.setData({
-      advice: ''
+    wx.request({
+      url: `${app.globalData.baseUrl}/addAdvice`,
+      method: 'POST',
+      data:{
+        openid: app.globalData.openid,
+        advice: this.data.advice
+      },
+      success: res => {
+        this.setData({
+          advice: ''
+        })
+        wx.redirectTo({
+          url: '../index/index',
+        })
+        wx.showToast({
+          title: '提交成功',
+          duration: 1500
+        })
+      },
+      error: res => {
+        wx.showToast({
+          title: '提交失败，请稍后再试',
+          duration: 1500
+        })
+      }
     })
-    wx.redirectTo({
-      url: '../index/index',
-    })
+   
   },  
   /**
    * 生命周期函数--监听页面加载

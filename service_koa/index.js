@@ -5,10 +5,25 @@ const Router = require("koa-router");
 const router = new Router();
 
 const api = require('./api/index')
+const bodyParser = require("koa-bodyparser");
+
 // app.use(async ctx => {
 //   ctx.body = 'hello zhaji'
 // })
+app.use(bodyParser());
 
+console.log(
+  "临时环境变量，数据库名：",
+  process.env.DATABASE,
+  "\n用户名：",
+  process.env.USER,
+  "\n密码：",
+  process.env.PWD,
+  "\n小程序id：",
+  process.env.APPID,
+  "\n密钥：",
+  process.env.SECRET
+);
 router.get("/", async (ctx) => {
   ctx.body = "hello zhaji";
 });
@@ -20,6 +35,12 @@ router.get('/login', async ctx => {
   ctx.body = res
 })
 
+// 新增建议
+router.post('/addAdvice', async ctx => {
+  const {openid, advice} = ctx.request.body
+  const res = api.addAdvice(openid, advice)
+  ctx.body = res
+})
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(3000);
