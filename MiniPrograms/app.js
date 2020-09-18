@@ -48,6 +48,7 @@ App({
   globalData: {
     userInfo: null,
     openid: '',
-    baseUrl: 'http://127.0.0.1:3000'
+    // baseUrl: 'http://127.0.0.1:3000' // 本地
+    baseUrl: 'http://mini_demo.escript.cn:3000' 
   }
 })

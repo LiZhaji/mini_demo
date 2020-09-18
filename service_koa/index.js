@@ -7,6 +7,8 @@ const router = new Router();
 const api = require('./api/index')
 const bodyParser = require("koa-bodyparser");
 
+const https =  require('https')
+
 // app.use(async ctx => {
 //   ctx.body = 'hello zhaji'
 // })
@@ -43,5 +45,23 @@ router.post('/addAdvice', async ctx => {
 })
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(3000);
-console.log(`项目已启动，地址为 http://127.0.0.1:3000`);
+// index.js
+
+const https = require("https")
+
+// SSL options
+// 若读取不到文件，则启动http服务
+try {
+  const options = {
+    key: fs.readFileSync("/root/https/xxx.key"), //ssl文件路径  下载下来的证书文件
+    cert: fs.readFileSync("/root/https/xxx.pem") //ssl文件路径	下载下来的证书文件
+  };
+  // 创建https 服务
+  const httpsServer = https.createServer(options, app.callback());
+  httpsServer.listen(443); // 默认监听443
+  console.log("已启动https服务");
+
+} catch (error) {
+  app.listen(3000);
+  console.log("无证书文件！已启动http服务，端口3000");
+}
